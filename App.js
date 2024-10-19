@@ -11,7 +11,7 @@ import { OnHoverLink } from "./Modules/OnHover-Links/Routes/OnHoverLinkRouter.js
 import UserRoutes from "./Modules/User-Management/Routes/UserRoutes.js";
 import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js";
 
-dotenv.config(); // Load environment variables
+dotenv.config({ path: "./env" }); // Load environment variables
 
 const App = express();
 const port = process.env.PORT || 3000;
