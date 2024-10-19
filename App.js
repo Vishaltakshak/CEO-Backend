@@ -13,11 +13,17 @@ import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js
 
 dotenv.config({ path: "./env" }); // Load environment variables
 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // Allow credentials to be sent
+};
+
 const App = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3500;
 
 App.use(express.json());
-App.use(cors()); // Apply CORS middleware
+App.use(cors(corsOptions)); // Apply CORS middleware
 
 // Define routes
 App.use("/api/booking/services", BookingRoutes);
