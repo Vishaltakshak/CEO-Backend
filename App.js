@@ -14,7 +14,7 @@ import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js
 dotenv.config({ path: "./env" }); // Load environment variables
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Replace with your frontend URL
+  origin: [process.env.FRONTEND_URL, process.env.ADMIN_URL], // Replace with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, // Allow credentials to be sent
 };
