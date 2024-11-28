@@ -118,3 +118,30 @@ export const DeleteLink =async(request, response)=>{
     }
 
 }
+
+export const uploadServiceImage = async(req, res) => {
+    if (!req || !res) {
+        return res.status(500).json({ success: false, message: 'Request or response object is missing' });
+    }
+
+    if (!req.file || !req.file.location) {
+        return res.status(400).json({ success: false, message: 'Upload failed' });
+    }
+
+    try {
+        const imageUrl = req.file.location;
+        // Save the `imageUrl` in MongoDB alongside other document data if needed.
+        try {
+            const newLink = new LinkSch({
+                ServiceIMG: imageUrl
+            });
+            await newLink.save();
+        } catch (error) {
+            return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+        }
+        return res.json({ success: true, imageUrl });
+    } catch (error) {
+        console.error("Error during image upload:", error);
+        return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+    }
+};
