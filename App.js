@@ -10,7 +10,9 @@ import NavBarRoutes from "./Modules/NavBar/routes/NavBarRoutes.js";
 import { OnHoverLink } from "./Modules/OnHover-Links/Routes/OnHoverLinkRouter.js";
 import UserRoutes from "./Modules/User-Management/Routes/UserRoutes.js";
 import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js";
-
+import morgan from "morgan";
+import fs from 'fs';
+import path from 'path';
 dotenv.config({ path: "./env" }); // Load environment variables
 
 const corsOptions = {
@@ -20,6 +22,8 @@ const corsOptions = {
 };
 
 const App = express();
+
+App.use(morgan('dev'));
 const port = process.env.PORT || 3500;
 
 App.use(express.json());

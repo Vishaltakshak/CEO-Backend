@@ -1,7 +1,7 @@
 import mongoose, { SchemaTypes } from "mongoose";
 
 export const VendorManagementSchema = mongoose.Schema({
-  VendorName: { type: SchemaTypes.String, required: true, minLength: 10 },
+  VendorName: { type: SchemaTypes.String, required: true },
   VendorCategory: { type: SchemaTypes.String, required: true },
   ContactName: { type: SchemaTypes.String, required: true },
   ContactMail: { type: SchemaTypes.String, required: true },
@@ -10,13 +10,12 @@ export const VendorManagementSchema = mongoose.Schema({
   VendorDescription: {
     type: SchemaTypes.String,
     required: true,
-    minLength: 20,
-    maxLength: 150,
+    minLength: 20
   },
   VendorAddress: { type: SchemaTypes.String, required: true },
-  VendorRating: { type: SchemaTypes.Number, required: true },
-  VendorImages: { type: [SchemaTypes.String] },
-  VendorOpenHours: { type: {} }, // Plain object for open hours
+  VendorRating: { type: SchemaTypes.String, required: true },
+  VendorImages: { type: SchemaTypes.String },
+  VendorOpenHours: { type: SchemaTypes.String, required:true }, // Plain object for open hours
   VendorPricingInfo: {
     type: {
       Currency: { type: SchemaTypes.String, required: true },
@@ -28,13 +27,7 @@ export const VendorManagementSchema = mongoose.Schema({
     required: true,
   },
   VendorAmenities: { type: [SchemaTypes.String], required: true },
-  VendorLocationCoordinates: {
-    type: {
-      latitude: { type: SchemaTypes.Number, required: true },
-      longitude: { type: SchemaTypes.Number, required: true },
-    },
-    required: true,
-  },
+  MapUrl: { type: SchemaTypes.String },
   VendorStatus: { type: SchemaTypes.String },
 });
 

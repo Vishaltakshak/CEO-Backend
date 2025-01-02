@@ -67,17 +67,17 @@ export const UpdateUser = async (request, response) => {
     const UpdatedUser = await userSch.findByIdAndUpdate(
       id,
       {
-        Name,
-        Mail,
-        Role,
-        UserType,
-        Password,
-        MobileNumber,
-        CompanyName,
-        DOB,
-        ProfessionalTitle,
-        Currency,
-        Language,
+        Name: Name,
+        Mail: Mail,
+        Role: Role,
+        UserType: UserType,
+        Password: Password,
+        MobileNumber: MobileNumber,
+        CompanyName: CompanyName,
+        DOB: DOB,
+        ProfessionalTitle: ProfessionalTitle,
+        Currency: Currency,
+        Language: Language,
       },
       { new: true }
     );
@@ -118,31 +118,31 @@ export const DeleteUser = async (request, response) => {
 };
 
 
-export const uploadImage = async (req, res) => {
-    if (!req || !res) {
-        return res.status(500).json({ success: false, message: 'Request or response object is missing' });
-    }
+// export const uploadImage = async (req, res) => {
+//     if (!req || !res) {
+//         return res.status(500).json({ success: false, message: 'Request or response object is missing' });
+//     }
 
-    if (!req.file || !req.file.location) {
-        return res.status(400).json({ success: false, message: 'Upload failed', error: error.message });
-    }
+//     if (!req.file || !req.file.location) {
+//         return res.status(400).json({ success: false, message: 'Upload failed', error: error.message });
+//     }
 
-    try {
-        const imageUrl = req.file.location;
-        // Save the `imageUrl` in MongoDB alongside other document data if needed.
-        try {
-            const newUser = new userSch({
-              UserImage: imageUrl
-            });
-            await newUser.save();
-        } catch (error) {
-            return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
-        }
-        return res.json({ success: true, imageUrl });
-    } catch (error) {
-        console.error("Error during image upload:", error);
-        return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
-    }
-};
+//     try {
+//         const imageUrl = req.file.location;
+//         // Save the `imageUrl` in MongoDB alongside other document data if needed.
+//         try {
+//             const newUser = new userSch({
+//               UserImage: imageUrl
+//             });
+//             await newUser.save();
+//         } catch (error) {
+//             return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+//         }
+//         return res.json({ success: true, imageUrl });
+//     } catch (error) {
+//         console.error("Error during image upload:", error);
+//         return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+//     }
+// };
 
 

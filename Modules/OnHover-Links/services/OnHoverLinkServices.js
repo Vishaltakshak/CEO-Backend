@@ -65,7 +65,8 @@ export const UpdateLink=async(request, response)=>{
         Offer,
         Latitude,
         Longitude,
-        ContactNumber,  
+        ContactNumber, 
+        MapUrl, 
     }=request.body
 
     try {
@@ -84,7 +85,8 @@ export const UpdateLink=async(request, response)=>{
             Offer,
             Latitude,
             Longitude,
-            ContactNumber,},{new:true})
+            ContactNumber,
+            MapUrl},{new:true})
             if (!UpdatedValue) {
                  return response.status(404).json({message:"Value couldn't be updated"})
                 
@@ -101,9 +103,9 @@ export const UpdateLink=async(request, response)=>{
 }
 
 export const DeleteLink =async(request, response)=>{
-    const{id}=request.body;
+    const{id}=request.params;
     try {
-        const DeletedLink = LinkSch.findByIdAndDelete(id)
+        const DeletedLink = await LinkSch.findByIdAndDelete(id);
         if (!DeletedLink) {
             return response.status(404).json({message:"either not found or couldn't be deleted"})
             

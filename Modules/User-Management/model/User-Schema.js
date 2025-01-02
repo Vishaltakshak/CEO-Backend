@@ -12,7 +12,7 @@ export const UserSchema = mongoose.Schema({
   ConfirmPassword: { type: SchemaTypes.String, minLength: 8 },
   MobileNumber: { type: SchemaTypes.String, required: true }, // Changed to String for better validation
   Role: { type: SchemaTypes.String, default: "User" },
-  DOB: { type: SchemaTypes.Date, required: true },
+  DOB: { type: SchemaTypes.Date },
   LinkedinProfile: { type: SchemaTypes.String }, // Optional field
   CompanyName: { type: SchemaTypes.String, required: true, minLength: 3 },
   ProfessionalTitle: { type: SchemaTypes.String, required: true },

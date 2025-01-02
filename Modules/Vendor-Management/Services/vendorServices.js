@@ -7,7 +7,7 @@ export const AddVendor = async (request, response) => {
     try {
         const addedVendor = await VendorManagementSch.create(vendorData);
         if (!addedVendor) {
-            return response.status(400).json({ message: 'Vendor not added' });
+            return response.status(400).json({ message: 'Vendor not added', error:error.message });
         }
         return response.status(200).json({ message: 'Vendor added successfully', vendor: addedVendor });
     } catch (error) {
@@ -135,3 +135,5 @@ export const uploadVendorImage = async(req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
     }
 };
+
+

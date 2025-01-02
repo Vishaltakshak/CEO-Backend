@@ -1,23 +1,20 @@
-import AWS from 'aws-sdk';
-import dotenv from 'dotenv';
-import multer from 'multer';
+import AWS from "aws-sdk";
+import multer from "multer";
+import dotenv from "dotenv";
 
-dotenv.config();
+const Storage =multer.memoryStorage();
+export const UploadVendor = multer({
+    storage:Storage,
+    limits: 15*1024*1024
+})
 
-//multer config
-
-const storage = multer.memoryStorage();
-
-export const upload = multer({ storage:storage });
-// Configure AWS S3
 const s3 = new AWS.S3({
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRECT_KEY,
-  region: process.env.AWS_REGION,
-  
+    accessKeyId: process.env.AWS_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SECRECT_KEY,
+    region: process.env.AWS_REGION,
 });
 
-export const uploadImage = async (req, res) => {
+export const uploadVendorImage = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
@@ -27,10 +24,10 @@ export const uploadImage = async (req, res) => {
     const fileName = `${Date.now()}_${file.originalname}`;
     const s3Params = {
       Bucket: process.env.AWS_BUCKET_NAME,
-      Key: `user/${fileName}`, // Save in an 'uploads/' folder in the bucket
+      Key: `Vendor/${fileName}`, 
       Body: file.buffer,
       ContentType: file.mimetype,
-      // Make the file publicly accessible
+      
     };
 
     
