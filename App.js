@@ -11,12 +11,11 @@ import { OnHoverLink } from "./Modules/OnHover-Links/Routes/OnHoverLinkRouter.js
 import UserRoutes from "./Modules/User-Management/Routes/UserRoutes.js";
 import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js";
 import morgan from "morgan";
-import fs from 'fs';
-import path from 'path';
+
 dotenv.config({ path: "./env" }); // Load environment variables
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_URL, process.env.ADMIN_URL, process.env.HOSTED_URL], // Replace with your frontend URL
+  origin: ["http://localhost:3500", process.env.ADMIN_URL, process.env.HOSTED_URL], // Replace with your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, // Allow credentials to be sent
 };
