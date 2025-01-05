@@ -50,5 +50,7 @@ const startServer = async () => {
     process.exit(1);
   }
 };
-
+App.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
 startServer();
