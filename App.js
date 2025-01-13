@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { creatConnection, CreatConnection } from "./shared/Connection.js";
+import { creatConnection} from "./shared/Connection.js";
 import { BookingRoutes } from "./Modules/Booking-Management/Routes/Booking-Routes.js";
 import { ContentRoutes } from "./Modules/Content-Management/Routes/Content-Routes.js";
 import InventoryRouter from "./Modules/Inventory-Management/Routes/InventoryRoutes.js";
