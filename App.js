@@ -12,21 +12,23 @@ import UserRoutes from "./Modules/User-Management/Routes/UserRoutes.js";
 import { VendorRoutes } from "./Modules/Vendor-Management/routes/VendorRoutes.js";
 import morgan from "morgan";
 
-dotenv.config({ path: "./env" }); // Load environment variables
+dotenv.config({ path: "./env" }); 
 
-// const corsOptions = {
-//   origin: ["http://localhost:3500", process.env.ADMIN_URL, process.env.HOSTED_URL], // Replace with your frontend URL
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   credentials: true, // Allow credentials to be sent
-// };
+const corsOptions = {
+  origin: ["http://localhost:3500", process.env.ADMIN_URL, process.env.HOSTED_URL],
+  methods: ["GET", "POST", "PUT", "DELETE"], 
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  maxAge: 86400 
+};
 
 const App = express();
 
+App.use(cors(corsOptions)); 
 App.use(morgan('dev'));
 const port = process.env.PORT || 3500;
 
 App.use(express.json());
-// App.use(cors(corsOptions)); 
 
 // Define routes
 App.use("/api/booking/services", BookingRoutes);
