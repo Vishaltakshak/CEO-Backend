@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import fs from 'fs';
+import path from 'path';
 
 import { CreateConnection} from "./shared/Connection.js";
 import { BookingRoutes } from "./Modules/Booking-Management/Routes/Booking-Routes.js";
@@ -55,15 +57,17 @@ App.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send('Something broke!');
 });
-const startServer = async () => {
-  try {
-    await CreateConnection();
-    App.listen(port, () => {
-      console.log("Server is running on port", port);
-    });
-  } catch (err) {
-    console.error("Error while starting server:", err);
-    process.exit(1);
-  }
-};
-startServer();
+const promise = CreateConnection();
+promise.then((connectionInfo)=>{
+    App.listen(port, err=>{
+        if (err) {
+            console.log('error in app',err);   
+        }else{
+            console.log("server is running",port)
+        }
+    
+    })
+
+}).catch(err=>{
+    console.log(err);
+})
