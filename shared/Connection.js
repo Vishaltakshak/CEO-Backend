@@ -5,7 +5,7 @@ dotenv.config();
 
 const DB_URL = process.env.MONGODB_URI; 
 
-export const createConnection = async () => {
+export const CreateConnection = async () => {
   console.log("Connecting to MongoDB...");
   try {
     if (!DB_URL) {
