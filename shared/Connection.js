@@ -12,7 +12,7 @@ export const CreateConnection = async () => {
       throw new Error("MONGODB_URI is not defined in environment variables");
     }
     const connectionInfo = await mongoose.connect(DB_URL);
-    console.log(`MongoDB connected successfully. Host: ${connectionInfo.connection.host}`);
+    console.log(`MongoDB connected successfully.`);
     return connectionInfo;
   } catch (error) {
     console.error("MongoDB connection failed:", error);
