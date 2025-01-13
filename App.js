@@ -31,14 +31,7 @@ const port = process.env.PORT || 3500;
 App.use(express.json());
 
 // Define routes
-App.use("/api/booking/services", BookingRoutes);
-App.use("/api/Content/management", ContentRoutes);
-App.use("/api/Inventory/management", InventoryRouter);
-App.use("/api/Nav/hover", SubNavRouter);
-App.use("/api/NavBar", NavBarRoutes);
-App.use("/api/subnav/link", OnHoverLink);
-App.use("/api/user", UserRoutes);
-App.use("/api/Vendor", VendorRoutes);
+
 
 const startServer = async () => {
   try {
@@ -55,3 +48,11 @@ App.get('/', (req, res) => {
   res.send('Backend is working!');
 });
 startServer();
+App.use("/api/booking/services", BookingRoutes);
+App.use("/api/Content/management", ContentRoutes);
+App.use("/api/Inventory/management", InventoryRouter);
+App.use("/api/Nav/hover", SubNavRouter);
+App.use("/api/NavBar", NavBarRoutes);
+App.use("/api/subnav/link", OnHoverLink);
+App.use("/api/user", UserRoutes);
+App.use("/api/Vendor", VendorRoutes);
