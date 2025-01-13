@@ -41,7 +41,7 @@ App.use(express.json());
 App.get('/', (req, res) => {
   res.send('Backend is working!');
 });
-startServer();
+
 App.use("/api/booking/services", BookingRoutes);
 App.use("/api/Content/management", ContentRoutes);
 App.use("/api/Inventory/management", InventoryRouter);
@@ -65,3 +65,4 @@ const startServer = async () => {
     process.exit(1);
   }
 };
+startServer();
