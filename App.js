@@ -18,7 +18,7 @@ import morgan from "morgan";
 dotenv.config({ path: "./env" }); 
 
 const corsOptions = {
-  origin: ["http://localhost:3500","https://ceo-card-back-end-72bl.vercel.app", process.env.ADMIN_URL, process.env.HOSTED_URL],
+  origin: ["http://localhost:3500","https://ceo-card-frontend-three.vercel.app", process.env.ADMIN_URL, process.env.HOSTED_URL],
   methods: ["GET", "POST", "PUT", "DELETE"], 
   allowedHeaders: [
     'Content-Type', 
