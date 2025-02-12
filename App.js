@@ -67,6 +67,29 @@ app.use("/api/NavBar", NavBarRoutes);
 app.use("/api/subnav/link", OnHoverLink);
 app.use("/api/user", UserRoutes);
 app.use("/api/Vendor", VendorRoutes);
+app.post('/api/notifications/post', async (req, res) => {
+    try {
+        console.log("Request received:", req.body);
+
+        // Ensure req.body contains required fields
+        if (!req.body.userId || !req.body.message || !req.body.type) {
+            return res.status(400).json({ error: "Missing required fields" });
+        }
+
+        const newNotification = new Notification({
+            userId: req.body.userId,
+            message: req.body.message,
+            type: req.body.type,
+            createdAt: new Date()
+        });
+
+        await newNotification.save();
+        res.status(201).json({ message: "Notification created successfully" });
+    } catch (error) {
+        console.error("Error creating notification:", error);
+        res.status(500).json({ error: "Error creating notification" });
+    }
+});
 
 
 app.use((err, req, res, next) => {
