@@ -23,6 +23,8 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
+      "https://ceo-backend-vhnw.vercel.app/",
+      "https://ceo-backend-six.vercel.app/",
       "http://localhost:3500",
       "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app/",
       process.env.ADMIN_URL,
