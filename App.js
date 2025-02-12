@@ -24,7 +24,7 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://localhost:3500",
-      "https://ceo-card-back-end-72bl.vercel.app",
+      "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app/",
       process.env.ADMIN_URL,
       process.env.HOSTED_URL
     ],
