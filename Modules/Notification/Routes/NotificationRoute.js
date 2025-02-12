@@ -15,7 +15,7 @@ const notificationRoutes = (io) => {
         }
     });
 
-    router.post("/", async (req, res) => {
+    router.post("/post", async (req, res) => {
         try {
             const { userId, message, type } = req.body;
             const notification = await createNotification(userId, message, type, io);
