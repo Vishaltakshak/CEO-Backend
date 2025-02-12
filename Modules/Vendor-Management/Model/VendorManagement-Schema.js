@@ -29,6 +29,9 @@ export const VendorManagementSchema = mongoose.Schema({
   VendorAmenities: { type: [SchemaTypes.String], required: true },
   MapUrl: { type: SchemaTypes.String },
   VendorStatus: { type: SchemaTypes.String },
+  Brand:{type:SchemaTypes.String, required:true},
+  nodemon :{type:SchemaTypes.String, required:true},
+  Paid:{type:SchemaTypes.String, required:true}
 });
 
 export const VendorManagementSch = mongoose.model(

@@ -44,7 +44,10 @@ export const UpdateVendor = async (request, response) => {
         VendorAmenities,
         VendorStatus,
         VendorDescription,
-        VendorLoactionCoordinates
+        VendorLoactionCoordinates,
+        City,
+        Brand,
+        Paid
     } = request.body;
 
     try {
@@ -63,7 +66,10 @@ export const UpdateVendor = async (request, response) => {
             VendorAmenities,
             VendorStatus,
             VendorDescription,
-            VendorLoactionCoordinates
+            VendorLoactionCoordinates,
+            City,
+            Brand,
+            Paid
         }, { new: true }); // Use { new: true } to return the updated document
 
         if (!updatedVendor) {
