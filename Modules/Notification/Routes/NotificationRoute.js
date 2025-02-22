@@ -19,12 +19,12 @@ const notificationRoutes = (io) => {
     // Create a new notification
     router.post("/post", async (req, res) => {
         try {
-            const { userId, message, type } = req.body;
+            const { userId, message, type, heading } = req.body;
             if (!userId || !message || !type) {
                 return res.status(400).json({ error: "Missing required fields" });
             }
 
-            const notification = await createNotification(userId, message, type, io);
+            const notification = await createNotification(userId, heading, message, type, io);
             res.json(notification);
         } catch (error) {
             console.error("Error creating notification:", error);

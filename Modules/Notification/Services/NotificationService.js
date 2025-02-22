@@ -1,8 +1,8 @@
 import Notification from "../Schema/NotificationSchema.js"
 
-export const createNotification = async (userId, message, type, io) => {
+export const createNotification = async (userId, message, type, heading, io) => {
     try {
-        const notification = new Notification({ userId, message, type });
+        const notification = new Notification({ userId, message, type , heading});
         await notification.save();
 
         // Emit notification via socket.io
