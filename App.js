@@ -116,7 +116,7 @@ const io = new Server(server, {
       "https://ceo-backend-six.vercel.app/",
       "http://localhost:3500",
       "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app/",
-      "https://ceo-card-frontend-three.vercel.app/"
+      "https://ceo-card-frontend-three.vercel.app/",
       process.env.ADMIN_URL,
       process.env.HOSTED_URL
     ],
