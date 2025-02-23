@@ -26,6 +26,7 @@
     "multer-s3": "^3.0.1",
     "nodemon": "^3.1.4",
     "socket.io": "^4.8.1",
-    "socket.io-client": "^4.8.1"
+    "socket.io-client": "^4.8.1",
+    "xtend": "^4.0.2"
   }
 }
