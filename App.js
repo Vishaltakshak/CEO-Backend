@@ -112,14 +112,14 @@ const server = createServer(app);
 const io = new Server(server, {
   cors: {
     origin: [
-      
+      "https://ceo-backend-vhnw.vercel.app/",
       "https://ceo-backend-vhnw.vercel.app",
 
-     
+      "https://ceo-backend-six.vercel.app/",
       "https://ceo-backend-six.vercel.app",
       "http://localhost:3500",
       "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app",
-      
+      "https://ceo-card-frontend-three.vercel.app/",
       process.env.ADMIN_URL,
       process.env.HOSTED_URL,
       "https://ceo-card-frontend-three.vercel.app",
@@ -141,11 +141,11 @@ const io = new Server(server, {
 app.use(
   cors({
     origin: ["https://ceo-backend-vhnw.vercel.app",
-       
-      
+       "https://ceo-backend-vhnw.vercel.app",
+      "https://ceo-backend-six.vercel.app/",
       "http://localhost:3500",
       "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app/",
-    
+      "https://ceo-card-frontend-three.vercel.app/",
       process.env.ADMIN_URL,
       process.env.HOSTED_URL,
       "https://ceo-card-frontend-three.vercel.app",],
@@ -155,7 +155,7 @@ app.use(
       "Content-Type",
       "Authorization",
       "X-Requested-With",
-     
+      "Access-Control-Allow-Origin",
       "Origin",
       "Accept",
     ],
