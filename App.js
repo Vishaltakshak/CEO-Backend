@@ -109,6 +109,32 @@ dotenv.config();
 const connectedUsers = {};
 const app = express();
 const server = createServer(app); 
+
+const corsOptions = {
+  origin: [
+    "https://ceo-card-frontend-three.vercel.app",
+    "https://ceo-backend-vhnw.vercel.app",
+    "http://localhost:3500",
+    "https://ceo-card-frontend-three.vercel.app/",
+    process.env.ADMIN_URL,
+    process.env.HOSTED_URL,
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Access-Control-Allow-Origin",
+    "Origin",
+    "Accept",
+  ],
+  credentials: true,
+  maxAge: 86400,
+};
+
+// Apply CORS Middleware for all routes
+app.use(cors(corsOptions));
+
 const io = new Server(server, {
   cors: {
     origin: [
@@ -133,21 +159,7 @@ const io = new Server(server, {
     maxAge: 86400
   }
 });
-app.use(
-  cors({
-    origin: [
-      "https://ceo-card-frontend-three.vercel.app",
-      "https://ceo-backend-vhnw.vercel.app",
-      "http://localhost:3500",
-      "https://ceo-card-frontend-three.vercel.app/",
-      process.env.ADMIN_URL,
-      process.env.HOSTED_URL,
-      "https://ceo-card-frontend-three.vercel.app",],
-  
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    
-  }),
-)
+app.use(cors())
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
