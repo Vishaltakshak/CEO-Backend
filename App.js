@@ -132,8 +132,8 @@ const corsOptions = {
   maxAge: 86400,
 };
 
-// Apply CORS Middleware for all routes
-app.use(cors(corsOptions));
+
+
 
 const io = new Server(server, {
   cors: {
@@ -159,7 +159,7 @@ const io = new Server(server, {
     maxAge: 86400
   }
 });
-app.use(cors())
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
