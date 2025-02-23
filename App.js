@@ -133,7 +133,7 @@ const io = new Server(server, {
     maxAge: 86400
   }
 });
-
+app.set("trust proxy", 1);
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(morgan("dev"));
 app.use(express.json());
