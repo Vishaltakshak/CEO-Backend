@@ -139,6 +139,7 @@ app.use(cors({ origin: [process.env.FRONTEND_URL, "https://ceo-card-frontend-thr
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
+app.set("trust proxy", 1);
 
 
 
