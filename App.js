@@ -235,6 +235,7 @@ const server = createServer(app);
 
 // 🔥 FINAL FIX: CORS SETTINGS (APPLY THIS CORRECTLY)
 const allowedOrigins = [
+  "https://ceo-card-frontend-vishals-projects-de5d45df.vercel.app",
   "https://ceo-card-frontend-three.vercel.app",
   "https://ceo-backend-vhnw.vercel.app",
   "http://localhost:3500",
@@ -262,7 +263,13 @@ app.options("*", cors(corsOptions));
 // ✅ Fix: WebSocket CORS Issues (Socket.io)
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins[0], // Pick frontend URL
+    origin: [
+  "https://ceo-card-frontend-vishals-projects-de5d45df.vercel.app",
+  "https://ceo-card-frontend-three.vercel.app",
+  "https://ceo-backend-vhnw.vercel.app",
+  "http://localhost:3500",
+  "https://ceo-card-frontend-mv4jbpm3b-vishals-projects-de5d45df.vercel.app",
+] , 
     methods: ["GET", "POST"],
     credentials: true,
   },
