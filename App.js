@@ -158,13 +158,14 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  // origin: function (origin, callback) {
+  //   if (!origin || allowedOrigins.includes(origin)) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error("Not allowed by CORS"));
+  //   }
+  // },
+  origin:true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -177,7 +178,8 @@ app.options("*", cors(corsOptions));
 
 const io = new Server(server, {
   cors: {
-    origin: allowedOrigins[0] , 
+    // origin: allowedOrigins[0] , 
+    origin: true,
     methods: ["GET", "POST"],
     credentials: true,
   },
