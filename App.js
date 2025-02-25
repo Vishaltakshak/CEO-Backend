@@ -115,19 +115,12 @@ const corsOptions = {
     "https://ceo-card-frontend-three.vercel.app",
     "https://ceo-backend-vhnw.vercel.app",
     "http://localhost:3500",
-    "https://ceo-card-frontend-three.vercel.app/",
+   
     process.env.ADMIN_URL,
     process.env.HOSTED_URL,
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With",
-    "Access-Control-Allow-Origin",
-    "Origin",
-    "Accept",
-  ],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Origin", "Accept"],
   credentials: true,
   maxAge: 86400,
 };
@@ -139,27 +132,20 @@ const io = new Server(server, {
   cors: {
     origin: [
       "https://ceo-backend-vhnw.vercel.app",
-      "https://ceo-backend-six.vercel.app/",
+      
       "http://localhost:3500",
-      "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app/",
+   
       process.env.ADMIN_URL,
       process.env.HOSTED_URL,
       "https://ceo-card-frontend-three.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "X-Requested-With",
-      "Access-Control-Allow-Origin",
-      "Origin",
-      "Accept"
-    ],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Origin", "Accept"],
     credentials: true,
     maxAge: 86400
   }
 });
-app.use(cors(corsOptions));
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
@@ -194,9 +180,18 @@ app.get("/", (req, res) => {
 });
 
 // Public routes
-app.use("/api/user", UserRoutes);
+// app.use("/api/user", UserRoutes);
+app.use("/api/user", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://ceo-card-frontend-three.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") return res.status(200).end();
+  next();
+}, UserRoutes);
 
-// Protected Routes (Require Authentication)
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use("/api/notifications", notificationRoutes(io)); 
 app.use("/api/booking/services", protect, BookingRoutes);
 app.use("/api/Content/management", protect, ContentRoutes);
