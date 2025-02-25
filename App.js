@@ -175,7 +175,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-app.options("*", cors(corsOptions));
+app.options("*", cors());
 
 const io = new Server(server, {
   cors: {
