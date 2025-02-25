@@ -237,7 +237,8 @@ const server = createServer(app);
 const allowedOrigins = [
   "https://ceo-card-frontend-three.vercel.app",
   "https://ceo-backend-vhnw.vercel.app",
-  "http://localhost:3500"
+  "http://localhost:3500",
+  "https://ceo-card-frontend-mv4jbpm3b-vishals-projects-de5d45df.vercel.app",
 ];
 
 const corsOptions = {
@@ -272,6 +273,7 @@ io.engine.on("headers", (headers) => {
   headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS";
   headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization";
   headers["Access-Control-Allow-Credentials"] = "true";
+  headers["Access-Control-Allow-Origin"] = req.headers.origin;
 });
 
 // ✅ Middleware Setup
