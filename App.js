@@ -150,8 +150,7 @@ const server = createServer(app);
 
 // 🔥 FINAL FIX: CORS SETTINGS (APPLY THIS CORRECTLY)
 const allowedOrigins = [
-  "https://ceo-card-frontend-b123oiqoq-vishals-projects-de5d45df.vercel.app",
-  "https://ceo-card-frontend-vishals-projects-de5d45df.vercel.app",
+ "https://ceo-card-frontend-nm0ger5rx-vishals-projects-de5d45df.vercel.app"
   "https://ceo-card-frontend-three.vercel.app",
   "https://ceo-backend-vhnw.vercel.app",
   "http://localhost:3500",
