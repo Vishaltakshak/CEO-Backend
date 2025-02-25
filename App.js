@@ -128,22 +128,35 @@ const corsOptions = {
 
 
 
+// const io = new Server(server, {
+//   cors: {
+//     origin: [
+//       "https://ceo-backend-vhnw.vercel.app",
+      
+//       "http://localhost:3500",
+   
+//       process.env.ADMIN_URL,
+//       process.env.HOSTED_URL,
+//       "https://ceo-card-frontend-three.vercel.app"
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Origin", "Accept"],
+//     credentials: true,
+//     maxAge: 86400
+//   }
+// });
 const io = new Server(server, {
   cors: {
     origin: [
+      "https://ceo-card-frontend-three.vercel.app",
       "https://ceo-backend-vhnw.vercel.app",
-      
       "http://localhost:3500",
-   
       process.env.ADMIN_URL,
       process.env.HOSTED_URL,
-      "https://ceo-card-frontend-three.vercel.app"
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Origin", "Accept"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
-    maxAge: 86400
-  }
+  },
 });
 
 app.use(morgan("dev"));
@@ -151,7 +164,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
 
-
+app.options("*", cors(corsOptions));
+app.use(cors(corsOptions)
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
   max: 80, 
@@ -159,7 +173,12 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-
+app.options("*", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://ceo-card-frontend-three.vercel.app");
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.status(200).end();
+});
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId; // Get userId from frontend
 
@@ -189,8 +208,7 @@ app.use("/api/user", (req, res, next) => {
   next();
 }, UserRoutes);
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+
 
 app.use("/api/notifications", notificationRoutes(io)); 
 app.use("/api/booking/services", protect, BookingRoutes);
