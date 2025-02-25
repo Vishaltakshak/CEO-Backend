@@ -150,7 +150,7 @@ const server = createServer(app);
 
 // 🔥 FINAL FIX: CORS SETTINGS (APPLY THIS CORRECTLY)
 const allowedOrigins = [
- "https://ceo-card-frontend-nm0ger5rx-vishals-projects-de5d45df.vercel.app"
+ "https://ceo-card-frontend-nm0ger5rx-vishals-projects-de5d45df.vercel.app",
   "https://ceo-card-frontend-three.vercel.app",
   "https://ceo-backend-vhnw.vercel.app",
   "http://localhost:3500",
@@ -166,7 +166,7 @@ const corsOptions = {
   //     callback(new Error("Not allowed by CORS"));
   //   }
   // },
-  origin:true,
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
@@ -180,10 +180,20 @@ app.options("*", cors(corsOptions));
 const io = new Server(server, {
   cors: {
     // origin: allowedOrigins[0] , 
-    origin: true,
+    origin: "*",
     methods: ["GET", "POST"],
     credentials: true,
   },
+});
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // Allow all origins
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Credentials", "true"); // If using cookies or auth
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
 });
 
 io.engine.on("headers", (headers, req) => {
