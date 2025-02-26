@@ -25,13 +25,12 @@ const app = express();
 const server = createServer(app); 
 
 const corsOptions = {
-  origin: true,
-  // origin: [
-  //   "https://ceo-card-frontend-three.vercel.app",
-  //   "https://ceo-backend-vhnw.vercel.app",
-  //   "http://localhost:3500",
-  //   "https://ceo-backend-vhnw.vercel.app",
-  // ],
+  
+  origin: [
+   "https://ceo-card-frontend-three.vercel.app",
+    "http://localhost:3500",
+   
+  ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: [
     "Content-Type",
@@ -50,14 +49,12 @@ const corsOptions = {
 
 const io = new Server(server, {
   cors: {
-    origin: true,
-    // origin: [
-    //   "https://ceo-card-frontend-three.vercel.app",
-    //   "https://ceo-backend-vhnw.vercel.app",
-    //   "http://localhost:3500",
-    //   "https://ceo-backend-git-main-vishals-projects-de5d45df.vercel.app",
-      
-    // ],
+    origin: [
+   "https://ceo-card-frontend-three.vercel.app",
+    "http://localhost:3500",
+   
+  ],
+   
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
       "Content-Type",
@@ -76,7 +73,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 app.set("trust proxy", 1);
-app.use("*",cors(corsOptions))
+
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, 
