@@ -29,6 +29,7 @@ const corsOptions = {
   origin: [
    "https://ceo-card-frontend-three.vercel.app",
     "http://localhost:3500",
+    "http://localhost:5173"
    
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],

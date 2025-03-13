@@ -80,8 +80,8 @@ export const logoutUser = (req, res) => {
             res.cookie("token", "", {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                sameSite: "strict",
-                maxAge: 0,
+                sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+                maxAge: 20*60,
                 path: "/",
                 domain: process.env.COOKIE_DOMAIN
             });
