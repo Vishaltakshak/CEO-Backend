@@ -34,10 +34,10 @@ export const loginUser = async (req, res) => {
         );
 
         if (isMobile) {
-            // Mobile apps don't use cookies, return token in response
+
             return res.status(200).json({ 
                 message: "Login successful",
-                token,  // Send token for mobile clients to store
+                token,  
                 user: { 
                     id: user._id,
                     email: user.Mail,
@@ -56,6 +56,7 @@ export const loginUser = async (req, res) => {
 
             return res.status(200).json({ 
                 message: "Login successful",
+                token: token,
                 user: { 
                     id: user._id,
                     email: user.Mail,
